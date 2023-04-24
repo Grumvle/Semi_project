@@ -1,10 +1,5 @@
 $(document).ready(function() {
 
-
-	
-
-
-
 	// 하트 아이콘을 클릭할 때마다 실행
 	$('.product-wishlist-btn').on('click', function(e) {
 		console.log("찜하기 기능 Ajax호출");
@@ -55,4 +50,5 @@ $(document).ready(function() {
 			}
 		});
 	});
+
 });

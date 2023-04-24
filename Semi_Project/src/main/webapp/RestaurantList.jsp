@@ -18,6 +18,29 @@ if (request.getProtocol().equals("HTTP/1.1"))
 <head>
 <meta charset="utf-8" />
 <title>Fooding</title>
+<style type="text/css">
+/* 각 별들의 기본 설정 */
+.starR {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+	font-size: 1.8em;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+/* 별 이모지에 마우스 오버 시 */
+.starR:hover {
+	text-shadow: 0 0 0 #ccc;
+}
+
+/* 별 이모지를 클릭 후 class="on"이 되었을 경우 */
+.starR.on {
+	text-shadow: 0 0 0 #ffbc00;
+}
+</style>
 <!-- SEO Meta Tags-->
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
@@ -46,8 +69,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 <link rel="stylesheet" media="screen" href="css/Board_Main.css" />
 
 <!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
-<script src="js/kakao_login.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 
 </head>
 <!-- Body-->
@@ -812,213 +834,137 @@ if (request.getProtocol().equals("HTTP/1.1"))
      --%>
 
 
+	<!--가게정보 상세페이지  ==============================================================================================-->
 
-	<div class="container pb-5 mb-4">
-		<div class="row">
-			<div class="col-lg-3">
-				<!-- Shop sidebar-->
-				<div class="offcanvas-sidebar">
-					<div class="offcanvas-sidebar-toggle">
-						<span class="toggle-knob"><i data-feather="chevrons-right"></i>Sidebar</span>
-					</div>
-					<div class="offcanvas-sidebar-body">
-						<div class="offcanvas-sidebar-body-inner">
-							<!-- Categories-->
-							<div class="widget widget-categories mb-4 py-1">
-								<p class="widget-title">카테고리</p>
-								<ul id="shopCategories">
-									<li class="has-children"><a href="#shoes"
-										data-toggle="collapse"> <i
-											class="widget-categories-indicator"
-											data-feather="chevron-down"></i>지역<span
-											class="badge text-muted ml-1"></span></a>
-										<ul class="collapse show" id="shoes"
-											data-parent="#shopCategories">
-											<li><a href="SearchKeyRestaurant.do?keyword=서울">서울<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=경기">경기<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=인천">인천<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=대구">대구<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=부산">부산<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=제주">제주<span
-													class="badge text-muted ml-1"></span></a></li>
-										</ul></li>
-									<li class="has-children"><a class="collapsed"
-										href="#clothing" data-toggle="collapse"> <i
-											class="widget-categories-indicator"
-											data-feather="chevron-down"></i>음식 종류<span
-											class="badge text-muted ml-1"></span></a>
-										<ul class="collapse" id="clothing"
-											data-parent="#shopCategories">
-											<li><a href="SearchKeyRestaurant.do?keyword=고기">고기요리<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=한식">한식<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=양식">양식<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=중식">중식<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=일식">일식<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=아시안">아시안<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=카페">카페,디저트<span
-													class="badge text-muted ml-1"></span></a></li>
-										</ul></li>
-									<li class="has-children"><a class="collapsed" href="#bags"
-										data-toggle="collapse"> <i
-											class="widget-categories-indicator"
-											data-feather="chevron-down"></i>테마별<span
-											class="badge text-muted ml-1"></span></a>
-										<ul class="collapse" id="bags" data-parent="#shopCategories">
-											<li><a href="SearchKeyRestaurant.do?keyword=데이트">데이트코스<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=가족">가족모임<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=뷰">뷰가 좋은<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=전통">전통적인<span
-													class="badge text-muted ml-1"></span></a></li>
-											<li><a href="SearchKeyRestaurant.do?keyword=비지니스">비지니스
-													미팅<span class="badge text-muted ml-1"></span>
-											</a></li>
-										</ul></li>
 
-								</ul>
-							</div>
-							<!-- Price range-->
-							<div class="widget mb-4 pb-3">
-								<h3 class="widget-title">메뉴 가격으로 레스토랑 검색</h3>
-								<form method="get" action="SearchCostRestaurant.do?"
-									class="range-slider" data-start-min="250" data-start-max="650"
-									data-min="0" data-max="300000" data-step="1000">
-									<div class="ui-range-slider"></div>
-									<footer class="ui-range-slider-footer">
-										<div class="column">
-											<button class="btn btn-outline-primary btn-sm" type="submit">검색</button>
-										</div>
-										<div class="column">
-											<div class="ui-range-values">
-												<div class="ui-range-label">가격:</div>
-												<div class="ui-range-value-min">
-													￦<span></span> <input type="hidden" name="min">
-												</div>
-												&nbsp;&ndash;&nbsp;
-												<div class="ui-range-value-max">
-													￦<span></span> <input type="hidden" name="max">
-												</div>
-											</div>
-										</div>
-									</footer>
-								</form>
-							</div>
-
-							<%--Promo banner --%>
-							<div class="bg-secondary">
-								<img
-									src="https://media.hellobot.co/fixedmenu/%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AF%E1%84%81%E1%85%A1%E1%84%86%E1%85%A1%E1%86%AF%E1%84%81%E1%85%A1.png"
-									alt="뭐 먹지?">
-								<div class="px-3 pt-4 text-center">
-									<h4 class="font-size-sm font-weight-normal pt-1 mb-0"></h4>
-									<h4 class="h5 pb-2" style="font-family: 'GmarketSansMedium';">
-										레스토랑을 고르기 <br>힘들다면?
-									</h4>
-									<a class="d-block text-decoration-0" href="RandomRST.do">
-										<div class="btn btn-primary btn-sm"
-											style="font-family: 'GmarketSansMedium';">레스토랑 추천</div>
-									</a>
-								</div>
-							</div>
+	<div class="widget mb-4 pb-3">
+		<h3 class="widget-title">메뉴 가격으로 레스토랑 검색</h3>
+		<form method="get" action="SearchCostRestaurant.do?"
+			class="range-slider" data-start-min="250" data-start-max="650"
+			data-min="0" data-max="300000" data-step="1000">
+			<div class="ui-range-slider"></div>
+			<footer class="ui-range-slider-footer">
+				<div class="column">
+					<button class="btn btn-outline-primary btn-sm" type="submit">검색</button>
+				</div>
+				<div class="column">
+					<div class="ui-range-values">
+						<div class="ui-range-label">가격:</div>
+						<div class="ui-range-value-min">
+							￦<span></span> <input type="hidden" name="min">
+						</div>
+						&nbsp;&ndash;&nbsp;
+						<div class="ui-range-value-max">
+							￦<span></span> <input type="hidden" name="max">
 						</div>
 					</div>
 				</div>
-			</div>
+			</footer>
+		</form>
+	</div>
 
-			<c:set var="list" value="${List}" />
-			<c:if test="${!empty list }">
+	<%--Promo banner --%>
+	<div class="bg-secondary">
+		<img
+			src="https://media.hellobot.co/fixedmenu/%E1%84%86%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B3%E1%86%AF%E1%84%81%E1%85%A1%E1%84%86%E1%85%A1%E1%86%AF%E1%84%81%E1%85%A1.png"
+			alt="뭐 먹지?">
+		<div class="px-3 pt-4 text-center">
+			<h4 class="font-size-sm font-weight-normal pt-1 mb-0"></h4>
+			<h4 class="h5 pb-2" style="font-family: 'GmarketSansMedium';">
+				레스토랑을 고르기 <br>힘들다면?
+			</h4>
+			<a class="d-block text-decoration-0" href="RandomRST.do">
+				<div class="btn btn-primary btn-sm"
+					style="font-family: 'GmarketSansMedium';">레스토랑 추천</div>
+			</a>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 
-				<div class="col-lg-9">
-					<!-- 정렬-->
-					<div
-						class="d-flex flex-wrap justify-content-center justify-content-sm-between pb-3">
-						<div class="d-flex flex-wrap">
-							<div class="form-inline flex-nowrap mr-3 mr-sm-4 pb-3">
+	<c:set var="list" value="${List}" />
+	<c:if test="${!empty list }">
 
-								<form method="get"
-									action="<%=request.getContextPath()%>/RestaurantSort.do">
-									<label class="text-nowrap mr-2 d-none d-sm-block" for="sorting">정렬</label>
-									<select class="form-control custom-select" id="sorting">
-										<option>저장순</option>
-										<option>예약순</option>
-										<option>리뷰많은순</option>
-									</select>
-								</form>
-							</div>
-			</c:if>
-			<!--레스토랑 리스트-->
+		<div class="col-lg-9">
+			<!-- 정렬-->
+			<div
+				class="d-flex flex-wrap justify-content-center justify-content-sm-between pb-3">
+				<div class="d-flex flex-wrap">
+					<div class="form-inline flex-nowrap mr-3 mr-sm-4 pb-3">
+
+						<form method="get"
+							action="<%=request.getContextPath()%>/RestaurantSort.do">
+							<label class="text-nowrap mr-2 d-none d-sm-block" for="sorting">정렬</label>
+							<select class="form-control custom-select" id="sorting">
+								<option>저장순</option>
+								<option>예약순</option>
+								<option>리뷰많은순</option>
+							</select>
+						</form>
+					</div>
+	</c:if>
+	<!--레스토랑 리스트-->
 
 
-			<div class="row">
-				<c:set var="list" value="${List}" />
-				<c:if test="${!empty list }">
-					<c:forEach items="${list }" var="dto">
-						<!-- DB데이터만큼 리스트 출력되는 가게목록. -->
-						<div class="col-md-4 col-sm-6">
-							<div class="product-card mb-4">
-								<div class="product-thumb">
+	<div class="row">
+		<c:set var="list" value="${List}" />
+		<c:if test="${!empty list }">
+			<c:forEach items="${list }" var="dto">
+				<!-- DB데이터만큼 리스트 출력되는 가게목록. -->
+				<div class="col-md-4 col-sm-6">
+					<div class="product-card mb-4">
+						<div class="product-thumb">
 
-									<span class="product-wishlist-btn" data-toggle="tooltip"
-										data-placement="left" title="찜하기"
-										id="Heart${dto.getMain_idx() }"> <svg
-											xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-											fill="currentColor" class="bi bi-suit-heart"
-											viewBox="0 0 16 16">
+							<span class="product-wishlist-btn" data-toggle="tooltip"
+								data-placement="left" title="찜하기"
+								id="Heart${dto.getMain_idx() }"> <svg
+									xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-suit-heart"
+									viewBox="0 0 16 16">
 					                          <path
-												d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
+										d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
 					                        </svg>
 
-									</span> <input type="hidden" id="main_idx"
-										value="${dto.getMain_idx()}"> <img
-										src="${dto.getMain_img()}" alt="${dto.getMain_name()}">
+							</span> <input type="hidden" id="main_idx" value="${dto.getMain_idx()}">
+							<img src="${dto.getMain_img()}" alt="${dto.getMain_name()}">
 
-								</div>
-								<div class="product-card-body text-center">
-									<a class="product-meta" href="#"
-										style="font-family: 'GmarketSansMedium';">${dto.getMain_info() }</a>
-									<h3 class="product-card-title">
-										<a href="shop-single-apparel.jsp"
-											style="font-family: 'GmarketSansMedium'; font-size: 18px;">${dto.getMain_name()}</a>
-									</h3>
-									<span class="text-primary-orange"
-										style="font-family: 'GmarketSansMedium'; font-size: 13px;">${dto.getMain_addr() }</span>
-								</div>
-								<div class="product-card-body body-hidden">
 
-									<button class="btn btn-primary btn-sm btn-block" type="button"
-										data-toggle="toast" data-target="#cart-toast"
-										style="font-family: 'GmarketSansMedium';">예약하기</button>
-									<a class="quick-view-btn" id="StoreDetail"
-										href="#quick-view${dto.getMain_idx()}" data-toggle="modal"
-										style="color: black;"><i class="mr-2" data-feather="eye"
-										style="font-family: 'GmarketSansMedium';"></i>자세히</a>
-								</div>
-							</div>
 						</div>
-					
-					</c:forEach>
-				</c:if>
+						<div class="product-card-body text-center">
+							<a class="product-meta" href="#"
+								style="font-family: 'GmarketSansMedium';">${dto.getMain_info() }</a>
+							<h3 class="product-card-title">
+								<a href="shop-single-apparel.jsp"
+									style="font-family: 'GmarketSansMedium'; font-size: 18px;">${dto.getMain_name()}</a>
+							</h3>
+							<span class="text-primary-orange"
+								style="font-family: 'GmarketSansMedium'; font-size: 13px;">${dto.getMain_addr() }</span>
+						</div>
+						<div class="product-card-body body-hidden">
 
-				<c:if test="${empty list }">
-					<div class="pb-md-6 py-md-6">
-						<h1>😢검색 내용이 없습니다.😢</h1>
+							<button class="btn btn-primary btn-sm btn-block" type="button"
+								data-toggle="toast" data-target="#cart-toast"
+								style="font-family: 'GmarketSansMedium';">예약하기</button>
+							<a class="quick-view-btn" id="StoreDetail"
+								href="#quick-view${dto.getMain_idx()}" data-toggle="modal"
+								style="color: black;"><i class="mr-2" data-feather="eye"
+								style="font-family: 'GmarketSansMedium';"></i>자세히</a>
+						</div>
 					</div>
-				</c:if>
+				</div>
+
+			</c:forEach>
+		</c:if>
+
+		<c:if test="${empty list }">
+			<div class="pb-md-6 py-md-6">
+				<h1>😢검색 내용이 없습니다.😢</h1>
 			</div>
-		</div>
+		</c:if>
+	</div>
+	</div>
 	</div>
 
 
@@ -1050,10 +996,12 @@ if (request.getProtocol().equals("HTTP/1.1"))
 								<div class="col-lg-7">
 									<div class="owl-carousel"
 										data-owl-carousel="{ &quot;nav&quot;: true, &quot;dots&quot;: false, &quot;loop&quot;: true, &quot;margin&quot;: 15 }">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
+										<img src="${detail.getMain_img()}"
+											alt="${detail.getMain_img()}"> <img
+											src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
+										<img src="${detail.getMain_img()}"
+											alt="${detail.getMain_img()}"> <img
+											src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
 									</div>
 								</div>
 								<!-- Product details-->
@@ -1067,13 +1015,15 @@ if (request.getProtocol().equals("HTTP/1.1"))
 										<c:set var="endtime" value="${detail.getMain_endtime()}" />
 										<div class="form-group">
 											<div class="form-inline pb-3" style="float: left;">
-												<input class="form-control" type="date" id="resvation_date${detail.getMain_idx()}"
+												<input class="form-control" type="date"
+													id="resvation_date${detail.getMain_idx()}"
 													min="<%=java.time.LocalDate.now()%>"
 													value="<%=java.time.LocalDate.now()%>">
 											</div>
 											<div class="form-inline pb-3" style="float: left;">
 												<select class="form-control custom-select"
-													id="resvation_time${detail.getMain_idx()}" name="size" required>
+													id="resvation_time${detail.getMain_idx()}" name="size"
+													required>
 													<option>예약 시간</option>
 													<c:forEach var="res_time"
 														begin="${fn:substring(opentime,0,2)}"
@@ -1102,12 +1052,14 @@ if (request.getProtocol().equals("HTTP/1.1"))
 										<div class="form-group" style="float: left;">
 											<div class="form-inline pb-2" style="float: right;"></div>
 										</div>
-										<textarea class="form-control" id="request-text${detail.getMain_idx()}" rows="3"
+										<textarea class="form-control"
+											id="request-text${detail.getMain_idx()}" rows="3"
 											style="resize: none;" placeholder="요청사항 혹은 알러지 음식을 작성해주세요"></textarea>
 										<div class="d-flex flex-wrap align-items-center pt-1">
 
 											<div>
-												<button class="reservation-btn btn btn-primary px-5 mr-2" type="button">
+												<button class="reservation-btn btn btn-primary px-5 mr-2"
+													type="button">
 													<i class="mr-2" data-feather="shopping-cart"
 														style="font-family: 'GmarketSansMedium';"></i>예약하기
 												</button>
@@ -1149,7 +1101,23 @@ if (request.getProtocol().equals("HTTP/1.1"))
 								</div>
 								=================================================모달 추가 정보
 								구분칸===================================================
+								<div class="input-group">
+									<input type="hidden" value="${dto.getMain_idx()}" id="idx">
+									<div class="starRev">
+										<span class="starR on">⭐</span> <span class="starR">⭐</span> <span
+											class="starR">⭐</span> <span class="starR">⭐</span> <span
+											class="starR">⭐</span>
+									</div>
+									<div class="input-group">
 
+
+										<textarea name="review" class="form-control" type="text"
+											id="reviewContents" placeholder="리뷰 작성"></textarea>
+
+										<br>
+										<button class="btn btn-primary" type="button" id="id123">등록</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1498,11 +1466,8 @@ if (request.getProtocol().equals("HTTP/1.1"))
 
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 
-	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-	<script src="js/vendor.min.js"></script>
-	<script src="js/theme.min.js"></script>
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
 	<script src="js/sign_upChk.js"></script>
 	<script src="js/LoginChk.js"></script>
 	<script src="js/Board_Main.js"></script>
@@ -1513,6 +1478,19 @@ if (request.getProtocol().equals("HTTP/1.1"))
 			delay : 3000
 		});
 	</script>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="js/vendor.min.js"></script>
+	<script src="js/theme.min.js"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="js/sign_upChk.js"></script>
+	<script src="js/Board_Main.js"></script>
+	<script src="js/kakao_login.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script src="js/StoreMarked.js"></script>
+
+	<%--   ======================================하단 Footer <<END>>======================================= --%>
+
 
 </body>
 </html>
