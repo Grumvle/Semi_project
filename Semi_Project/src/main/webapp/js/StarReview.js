@@ -10,23 +10,24 @@ $(function () {
     return false;
   });
 
-  $("#id123").on("click", function(){
+  $("#id").on("click", function(e){
 	  
-    let idx = $(this).parents('.input-group').find("#idx").val();
-    let star = $(".starRev .on").length;
-    let review = $("#reviewContents").val();
+    let main_idx = $(this).parents('.modal-dialog').find("#detail_idx").val();
+    let star = $("#starRev .on"+main_idx).length;
+    let review = $("#reviewContents"+main_idx).val();
     
 	console.log("Ajax호출-Star");	
+	console.log("idx 값 : "+main_idx);	
   
 	$.ajax({
       type: "post",
       url: "star_review.do",
+      dataType: "json",
       data: {
     	  star : star,
     	  review : review,
-    	  idx : idx
+    	  idx : main_idx
       },
-      dataType: "json",
       success: function(data){
         
       }

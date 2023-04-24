@@ -1032,7 +1032,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 								</div>
 							</div>
 						</div>
-					
+
 					</c:forEach>
 				</c:if>
 
@@ -1074,10 +1074,12 @@ if (request.getProtocol().equals("HTTP/1.1"))
 								<div class="col-lg-7">
 									<div class="owl-carousel"
 										data-owl-carousel="{ &quot;nav&quot;: true, &quot;dots&quot;: false, &quot;loop&quot;: true, &quot;margin&quot;: 15 }">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
-										<img src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
+										<img src="${detail.getMain_img()}"
+											alt="${detail.getMain_img()}"> <img
+											src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
+										<img src="${detail.getMain_img()}"
+											alt="${detail.getMain_img()}"> <img
+											src="${detail.getMain_img()}" alt="${detail.getMain_img()}">
 									</div>
 								</div>
 								<!-- Product details-->
@@ -1091,13 +1093,15 @@ if (request.getProtocol().equals("HTTP/1.1"))
 										<c:set var="endtime" value="${detail.getMain_endtime()}" />
 										<div class="form-group">
 											<div class="form-inline pb-3" style="float: left;">
-												<input class="form-control" type="date" id="resvation_date${detail.getMain_idx()}"
+												<input class="form-control" type="date"
+													id="resvation_date${detail.getMain_idx()}"
 													min="<%=java.time.LocalDate.now()%>"
 													value="<%=java.time.LocalDate.now()%>">
 											</div>
 											<div class="form-inline pb-3" style="float: left;">
 												<select class="form-control custom-select"
-													id="resvation_time${detail.getMain_idx()}" name="size" required>
+													id="resvation_time${detail.getMain_idx()}" name="size"
+													required>
 													<option>예약 시간</option>
 													<c:forEach var="res_time"
 														begin="${fn:substring(opentime,0,2)}"
@@ -1126,12 +1130,14 @@ if (request.getProtocol().equals("HTTP/1.1"))
 										<div class="form-group" style="float: left;">
 											<div class="form-inline pb-2" style="float: right;"></div>
 										</div>
-										<textarea class="form-control" id="request-text${detail.getMain_idx()}" rows="3"
+										<textarea class="form-control"
+											id="request-text${detail.getMain_idx()}" rows="3"
 											style="resize: none;" placeholder="요청사항 혹은 알러지 음식을 작성해주세요"></textarea>
 										<div class="d-flex flex-wrap align-items-center pt-1">
 
 											<div>
-												<button class="reservation-btn btn btn-primary px-5 mr-2" type="button">
+												<button class="reservation-btn btn btn-primary px-5 mr-2"
+													type="button">
 													<i class="mr-2" data-feather="shopping-cart"
 														style="font-family: 'GmarketSansMedium';"></i>예약하기
 												</button>
@@ -1174,8 +1180,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 								=================================================모달 추가 정보
 								구분칸===================================================
 								<div class="input-group">
-									<input type="hidden" value="${dto.getMain_idx()}" id="idx">
-									<div class="starRev">
+									<div class="starRev" id="starRev${detail.getMain_idx()}">
 										<span class="starR on">⭐</span> <span class="starR">⭐</span> <span
 											class="starR">⭐</span> <span class="starR">⭐</span> <span
 											class="starR">⭐</span>
@@ -1184,10 +1189,10 @@ if (request.getProtocol().equals("HTTP/1.1"))
 
 
 										<textarea name="review" class="form-control" type="text"
-											id="reviewContents" placeholder="리뷰 작성"></textarea>
+											id="reviewContents${detail.getMain_idx()}" placeholder="리뷰 작성"></textarea>
 
 										<br>
-										<button class="btn btn-primary" type="button" id="id123">등록</button>
+										<button class="btn btn-primary" type="button" id="btn">등록</button>
 									</div>
 								</div>
 							</div>
