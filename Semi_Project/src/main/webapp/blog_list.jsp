@@ -799,8 +799,6 @@
           <hr class="pb-5">
           <!-- Post-->
           <div class="row pb-5">
-
-            
             <!-- Basic table -->
 <div class="table-responsive">
   <table class="table">
@@ -828,11 +826,6 @@
     </tbody>
   </table>
 </div>
-            
-            
-            
-            
-            
           </div>
           
           <!-- Pagination-->

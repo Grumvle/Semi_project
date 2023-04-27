@@ -834,10 +834,7 @@
   <button type="button" class="btn btn-primary" onclick="history.back()">목록</button>
 </div>
 
-<div class="d-flex flex-wrap justify-content-between pt-2 pb-4 mb-1">
-            <div class="mt-3 mr-3"><a class="tag-link mr-2 mb-2" href="#">#consumer electronics</a><a class="tag-link mb-2" href="#">#drones</a></div>
-            <div class="mt-3"><span class="d-inline-block align-middle text-muted font-size-sm mr-2 mb-2">Share post:</span><a class="social-btn sb-facebook mr-2 mb-2" href="#"><i class="flaticon-facebook"></i></a><a class="social-btn sb-twitter mr-2 mb-2" href="#"><i class="flaticon-twitter"></i></a><a class="social-btn sb-pinterest mr-2 mb-2" href="#"><i class="flaticon-pinterest"></i></a></div>
-          </div>
+
           <!-- Post tags + sharing-->
          
         </div>

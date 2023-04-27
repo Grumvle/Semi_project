@@ -797,10 +797,7 @@
     <div class="container pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <!-- Post meta-->
-          <div class="post-meta d-flex flex-wrap justify-content-between pb-3">
-            <div class="mr-2">by&nbsp;<a href="#">Olivia Reyes</a><span class="meta-divider"></span>in&nbsp;<a href="#">Aerial photo</a><span class="meta-divider"></span><span>Apr 20</span></div><a href="#"><i class="mr-1" data-feather="message-square"></i>13</a>
-          </div>
+          
           <!-- Gallery-->
           <div class="row pb-2">
 

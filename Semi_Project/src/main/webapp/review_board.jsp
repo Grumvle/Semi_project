@@ -776,7 +776,7 @@
             </li>
           </ol>
         </nav>
-        <h1 class="page-title">후시게시판</h1><span class="d-block mt-2 text-muted"></span>
+        <h1 class="page-title">후기게시판</h1><span class="d-block mt-2 text-muted"></span>
         <hr class="mt-4">
         <br><br>
         <div class="post-meta">

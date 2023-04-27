@@ -136,7 +136,7 @@ public class BoardDAO {
 		try {
 
 
-			sql = "select * from board where board_type = ? order by board_idx";
+			sql = "select count(*) from board where board_type = ?";
 
 
 			pstmt = con.prepareStatement(sql);
@@ -238,7 +238,6 @@ try {
 
 
 	public List<BoardDTO> ReviewBoardList() {
-
 		int count = 0;
 		openConn();
 
@@ -246,10 +245,11 @@ try {
 
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 
-
 		try {
 
-			sql = "select * from board where board_type = ? order by board_idx";
+
+			sql = "select count(*) from board where board_type = ?";
+
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "1");
