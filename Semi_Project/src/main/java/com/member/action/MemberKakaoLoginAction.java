@@ -60,11 +60,6 @@ public class MemberKakaoLoginAction implements Action {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonObj.toString());
 			
-			//forward.setRedirect(false);
-			
-			//forward.setPath("member_kakao_join.jsp");
-			
-		
 		}else if(check == 1) {				//회원인 경우 로그인 페이지로 안내
 			
 			MemberDTO memdto = dao.KakaoLogin(kakao_token, kakao_name, kakao_email);
